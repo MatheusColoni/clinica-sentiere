@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Clínica Sentiere — Psicologia e Saúde</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; color: #1a1a1a; background: #fff; }
+
+    nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid #e5e0d8;
+      background: #fff;
+      position: sticky; top: 0; z-index: 10;
+    }
+    .nav-logo { font-size: 20px; font-weight: 600; color: #854F0B; letter-spacing: 1px; }
+    .nav-sub { font-size: 11px; color: #999; }
+    .nav-links { display: flex; gap: 1.5rem; }
+    .nav-links a { font-size: 14px; color: #666; text-decoration: none; cursor: pointer; }
+    .nav-links a:hover { color: #854F0B; }
+
+    .hero {
+      padding: 5rem 2rem;
+      text-align: center;
+      background: #FAEEDA;
+    }
+    .hero h1 { font-size: 36px; font-weight: 600; color: #633806; margin-bottom: 0.75rem; }
+    .hero .tagline { font-size: 18px; color: #854F0B; margin-bottom: 0.75rem; font-style: italic; }
+    .hero p { font-size: 16px; color: #412402; max-width: 540px; margin: 0 auto 2rem; line-height: 1.7; }
+    .hero-badges { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 2rem; }
+    .badge {
+      background: #FAC775; color: #412402;
+      padding: 6px 16px; border-radius: 99px; font-size: 13px; font-weight: 500;
+    }
+    .btn {
+      display: inline-block; padding: 12px 28px; background: #854F0B;
+      color: white; border-radius: 8px; font-size: 15px;
+      cursor: pointer; border: none; font-weight: 500; text-decoration: none;
+    }
+    .btn:hover { background: #633806; }
+    .btn-outline {
+      display: inline-block; padding: 11px 24px;
+      border: 2px solid #854F0B; color: #854F0B;
+      border-radius: 8px; font-size: 14px;
+      cursor: pointer; background: transparent; font-weight: 500;
+      margin-left: 12px; text-decoration: none;
+    }
+    .btn-outline:hover { background: #FAEEDA; }
+
+    section { padding: 4rem 2rem; max-width: 980px; margin: 0 auto; }
+    .section-title { font-size: 24px; font-weight: 600; color: #633806; margin-bottom: 0.4rem; }
+    .section-sub { font-size: 14px; color: #888; margin-bottom: 2rem; }
+    hr { border: none; border-top: 1px solid #e5e0d8; margin-bottom: 2rem; }
+
+    .prof-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 1.25rem; }
+    .prof-card {
+      background: #fff;
+      border: 1px solid #e5e0d8;
+      border-radius: 12px;
+      padding: 1.5rem;
+      border-top: 3px solid #EF9F27;
+    }
+    .prof-avatar {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: #FAEEDA; display: flex; align-items: center; justify-content: center;
+      font-size: 18px; font-weight: 600; color: #633806;
+      margin-bottom: 1rem;
+    }
+    .prof-card h3 { font-size: 15px; font-weight: 600; color: #633806; margin-bottom: 2px; }
+    .prof-card .tipo { font-size: 13px; color: #854F0B; margin-bottom: 2px; font-weight: 500; }
+    .prof-card .crp { font-size: 11px; color: #aaa; margin-bottom: 0.75rem; }
+    .prof-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .prof-tag {
+      background: #FAEEDA; color: #633806;
+      font-size: 11px; padding: 3px 10px; border-radius: 99px;
+    }
+    .prof-spec { font-size: 12px; color: #666; margin-top: 10px; line-height: 1.6; }
+
+    .modalities { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+    .mod-card {
+      flex: 1; min-width: 180px;
+      background: #FAEEDA;
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+    }
+    .mod-card .icon { font-size: 32px; margin-bottom: 10px; }
+    .mod-card h4 { font-size: 16px; font-weight: 600; color: #633806; margin-bottom: 4px; }
+    .mod-card p { font-size: 13px; color: #854F0B; }
+
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1rem; }
+    .service-card {
+      background: #faf9f7;
+      border: 1px solid #e5e0d8;
+      border-radius: 12px;
+      padding: 1.25rem;
+    }
+    .service-icon { font-size: 24px; margin-bottom: 0.6rem; }
+    .service-card h4 { font-size: 14px; font-weight: 600; color: #633806; margin-bottom: 5px; }
+    .service-card p { font-size: 12px; color: #666; line-height: 1.6; }
+
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .contact-info { display: flex; flex-direction: column; gap: 1rem; }
+    .contact-item {
+      background: #faf9f7;
+      border: 1px solid #e5e0d8;
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+    }
+    .contact-item .label { font-size: 11px; color: #aaa; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .contact-item .value { font-size: 14px; color: #1a1a1a; font-weight: 500; line-height: 1.6; }
+
+    .map-box {
+      border: 1px solid #e5e0d8;
+      border-radius: 12px;
+      background: #FAEEDA;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 10px; padding: 2.5rem; text-align: center;
+    }
+    .map-box .pin { font-size: 36px; }
+    .map-box h4 { font-size: 16px; font-weight: 600; color: #633806; }
+    .map-box p { font-size: 13px; color: #854F0B; line-height: 1.6; }
+
+    footer {
+      border-top: 1px solid #e5e0d8;
+      padding: 2.5rem; text-align: center;
+      font-size: 13px; color: #999;
+      line-height: 2;
+    }
+    footer strong { color: #854F0B; }
+
+    @media (max-width: 600px) {
+      .contact-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .hero { padding: 3rem 1rem; }
+      section { padding: 2.5rem 1rem; }
+      .hero h1 { font-size: 26px; }
+      .btn-outline { margin-left: 0; margin-top: 10px; display: block; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div>
+    <div class="nav-logo">Sentiere</div>
+    <div class="nav-sub">Psicologia e Saúde</div>
+  </div>
+  <div class="nav-links">
+    <a href="#profissionais">Profissionais</a>
+    <a href="#atendimentos">Atendimentos</a>
+    <a href="#contato">Contato</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <h1>Clínica Sentiere</h1>
+  <p class="tagline">Um lugar para escutar, cuidar e caminhar junto com você</p>
+  <p>Psicologia e Saúde com atendimento presencial e online. Um espaço acolhedor onde cada pessoa é tratada com escuta ativa, empatia e cuidado especializado.</p>
+  <div class="hero-badges">
+    <span class="badge">Presencial</span>
+    <span class="badge">Online</span>
+    <span class="badge">Adultos</span>
+    <span class="badge">Adolescentes</span>
+    <span class="badge">Infantil</span>
+  </div>
+  <a class="btn" href="#contato">Agendar consulta</a>
+  <a class="btn-outline" href="#profissionais">Conheça a equipe</a>
+</div>
+
+<section id="profissionais">
+  <p class="section-title">Nossa equipe</p>
+  <p class="section-sub">Profissionais especializados prontos para cuidar de você</p>
+  <hr>
+  <div class="prof-grid">
+
+    <div class="prof-card">
+      <div class="prof-avatar">TS</div>
+      <h3>Thayná Schlichting de Souza</h3>
+      <div class="tipo">Psicóloga clínica</div>
+      <div class="crp">CRP 12/30091</div>
+      <div class="prof-tags">
+        <span class="prof-tag">Acomp. para mulheres</span>
+        <span class="prof-tag">TCC</span>
+      </div>
+      <p class="prof-spec">Atuação em Terapia Cognitivo Comportamental com foco em acompanhamento psicológico para mulheres.</p>
+    </div>
+
+    <div class="prof-card">
+      <div class="prof-avatar">BC</div>
+      <h3>Beatriz Coldebella</h3>
+      <div class="tipo">Psicóloga infantil</div>
+      <div class="crp">CRP 12/20501</div>
+      <div class="prof-tags">
+        <span class="prof-tag">Psicoterapia infantil</span>
+        <span class="prof-tag">Orientação Parental</span>
+      </div>
+      <p class="prof-spec">Prática Baseada em Evidências com especialização em psicoterapia infantil e orientação parental.</p>
+    </div>
+
+    <div class="prof-card">
+      <div class="prof-avatar">KG</div>
+      <h3>Kananda Fabiane Godoy Telski</h3>
+      <div class="tipo">Psicóloga infantil</div>
+      <div class="crp">CRP 12/20833</div>
+      <div class="prof-tags">
+        <span class="prof-tag">Avaliação Neuropsicológica</span>
+        <span class="prof-tag">Intervenção ABA</span>
+        <span class="prof-tag">Orientação Parental</span>
+      </div>
+      <p class="prof-spec">Especialista em Análise do Comportamento Aplicada e Neuropsicologia.</p>
+    </div>
+
+    <div class="prof-card">
+      <div class="prof-avatar">EJ</div>
+      <h3>Eloisa Deloss Johann</h3>
+      <div class="tipo">Psicóloga clínica</div>
+      <div class="crp">CRP 12/20582</div>
+      <div class="prof-tags">
+        <span class="prof-tag">Adultos e adolescentes</span>
+        <span class="prof-tag">TCC</span>
+        <span class="prof-tag">Mestre</span>
+      </div>
+      <p class="prof-spec">Especialista em TCC com Mestrado. Acompanhamento psicológico para adultos e adolescentes.</p>
+    </div>
+
+    <div class="prof-card">
+      <div class="prof-avatar">EF</div>
+      <h3>Evelyn Alves de Freitas</h3>
+      <div class="tipo">Psicóloga clínica</div>
+      <div class="crp">CRP 12/20517</div>
+      <div class="prof-tags">
+        <span class="prof-tag">Adultos e adolescentes</span>
+        <span class="prof-tag">TCC</span>
+      </div>
+      <p class="prof-spec">Especialista em Psicologia Clínica e TCC com acompanhamento para adultos e adolescentes.</p>
+    </div>
+
+  </div>
+</section>
+
+<section id="atendimentos">
+  <p class="section-title">Modalidades de atendimento</p>
+  <p class="section-sub">Atendemos presencialmente e online</p>
+  <hr>
+  <div class="modalities">
+    <div class="mod-card">
+      <div class="icon">🏢</div>
+      <h4>Presencial</h4>
+      <p>PME Office Tower Pagani — Palhoça, SC</p>
+    </div>
+    <div class="mod-card">
+      <div class="icon">💻</div>
+      <h4>Online</h4>
+      <p>De onde você estiver, com a mesma qualidade</p>
+    </div>
+  </div>
+
+  <p class="section-title" style="font-size:20px; margin-bottom:1rem;">Especialidades</p>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🧠</div>
+      <h4>Terapia individual</h4>
+      <p>Acompanhamento focado em bem-estar emocional e autoconhecimento.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">👩</div>
+      <h4>Saúde da mulher</h4>
+      <p>Espaço seguro e especializado para o acompanhamento psicológico feminino.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🧒</div>
+      <h4>Psicologia infantil</h4>
+      <p>Psicoterapia infantil com abordagem baseada em evidências.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">👨‍👩‍👧</div>
+      <h4>Orientação parental</h4>
+      <p>Suporte para pais no desenvolvimento e educação dos filhos.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔬</div>
+      <h4>Avaliação neuropsicológica</h4>
+      <p>Diagnóstico especializado com laudo neuropsicológico.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📋</div>
+      <h4>Intervenção ABA</h4>
+      <p>Análise do Comportamento Aplicada para crianças com TEA e outras demandas.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🎓</div>
+      <h4>TCC</h4>
+      <p>Terapia Cognitivo-Comportamental para ansiedade, depressão e outros quadros.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🌱</div>
+      <h4>Adolescentes</h4>
+      <p>Acompanhamento especializado para a fase da adolescência.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contato">
+  <p class="section-title">Localização e contato</p>
+  <p class="section-sub">Venha nos visitar ou fale com a gente</p>
+  <hr>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <div class="contact-item">
+        <div class="label">Endereço</div>
+        <div class="value">PME Office Tower Pagani<br>Palhoça — SC</div>
+      </div>
+      <div class="contact-item">
+        <div class="label">Modalidades</div>
+        <div class="value">Presencial e Online</div>
+      </div>
+      <div class="contact-item">
+        <div class="label">Instagram</div>
+        <div class="value">
+          <a href="https://www.instagram.com/clinica.sentiere" target="_blank" style="color:#854F0B;">@clinica.sentiere</a>
+        </div>
+      </div>
+    </div>
+    <div class="map-box">
+      <div class="pin">📍</div>
+      <h4>PME Office Tower Pagani</h4>
+      <p>Palhoça — SC<br>Atendimento presencial e online</p>
+      <a class="btn" style="margin-top:1rem; font-size:13px; padding:10px 20px;"
+        href="https://maps.google.com/?q=PME+Office+Tower+Pagani+Palhoca+SC"
+        target="_blank">Ver no Google Maps</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <strong>Clínica Sentiere — Psicologia e Saúde</strong><br>
+  Um lugar para escutar, cuidar e caminhar junto com você<br>
+  PME Office Tower Pagani · Palhoça — SC · Presencial e Online<br><br>
+  <a href="https://www.instagram.com/clinica.sentiere" target="_blank" style="color:#854F0B;">@clinica.sentiere</a>
+</footer>
+
+</body>
+</html>
